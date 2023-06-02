@@ -16,20 +16,20 @@ function makeApp() {
 	}
 
 	return initializeApp({
-		credential: cert({
-			privateKey: PRIVATE_FIREBASE_ADMIN_KEY,
-			clientEmail: PRIVATE_FIREBASE_ADMIN_CLIENT_EMAIL,
-			projectId: PUBLIC_FIREBASE_PROJECTID
-		}),
-		databaseURL: `https://${PUBLIC_FIREBASE_PROJECTID}.firebaseio.com`,
-		storageBucket: PUBLIC_FIREBASE_STORAGEBUCKET
+		// credential: cert({
+		// 	privateKey: PRIVATE_FIREBASE_ADMIN_KEY,
+		// 	clientEmail: PRIVATE_FIREBASE_ADMIN_CLIENT_EMAIL,
+		// 	projectId: PUBLIC_FIREBASE_PROJECTID
+		// }),
+		// databaseURL: `https://${PUBLIC_FIREBASE_PROJECTID}.firebaseio.com`,
+		// storageBucket: PUBLIC_FIREBASE_STORAGEBUCKET
 	})
 }
 
 export const firebase = makeApp()
-export const firestore = getFirestore()
+// export const firestore = getFirestore()
 export const auth = getAuth(firebase)
-export const bucket = getStorage(firebase).bucket(PUBLIC_FIREBASE_STORAGEBUCKET)
+// export const bucket = getStorage(firebase).bucket(PUBLIC_FIREBASE_STORAGEBUCKET)
 
 export const getUserFromSessionCookie = async (token: string) => {
 	const user = token ? await auth.verifySessionCookie(token) : null
@@ -37,8 +37,8 @@ export const getUserFromSessionCookie = async (token: string) => {
 	return auth.getUser(user.uid)
 }
 
-export const getAccess = async (user: UserRecord) => {
-	const accessSnapshot = await firestore.collection('access').doc(user.uid).get()
-	const access = accessSnapshot.data()
-	return { ...access, public: true }
-}
+// export const getAccess = async (user: UserRecord) => {
+// 	const accessSnapshot = await firestore.collection('access').doc(user.uid).get()
+// 	const access = accessSnapshot.data()
+// 	return { ...access, public: true }
+// }

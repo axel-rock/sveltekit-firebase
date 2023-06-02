@@ -1,5 +1,3 @@
-⚠️ This project is not working yet ⚠️
-
 # Sveltekit Firebase
 
 An opinionated Sveltekit template with Firebase authentication and Firestore.
