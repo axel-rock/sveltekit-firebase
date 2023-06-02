@@ -11,7 +11,7 @@
 		{#if user}
 			<a href="/user">{user?.displayName}</a>
 		{:else}
-			<a href="/login">Login</a>
+			<a href="/user">Login</a>
 		{/if}
 	</nav>
 </header>
