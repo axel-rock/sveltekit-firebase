@@ -32,3 +32,5 @@ gcloud functions add-invoker-policy-binding ssrsveltekitfirebasebp \ # Change th
 
       gcloud functions add-invoker-policy-binding ssrsveltekitfirebasebp --region="europe-west1" --member="allUsers"   --project="sveltekit-firebase-bp"
 ```
+
+## Initialize Firestore
