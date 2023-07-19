@@ -1,31 +1,51 @@
 <script lang="ts">
 	import type { PageData } from './$types'
 	export let data: PageData
-	let { user, access } = data
+	let { user } = data
 </script>
 
-<header>
-	<h1>Logo</h1>
+<header class="container">
+	<a href="/" id="logo">SvelteKit Firebase</a>
 	<nav>
-		<a href="/">Home</a>
+		<ul>
+			<li>
+				<a href="/">Home</a>
+			</li>
+		</ul>
 		{#if user}
-			<a href="/user">{user?.displayName}</a>
+			<li>
+				<a href="/user" role="button">{user?.displayName}</a>
+			</li>
 		{:else}
-			<a href="/user">Login</a>
+			<li>
+				<a href="/user" role="button">Login</a>
+			</li>
 		{/if}
 	</nav>
 </header>
 
-<main>
+<main class="container">
 	<slot />
 </main>
 
-<footer>
-	<a href="https://github.com/axel-rock/sveltekit-firebase" target="_blank" rel="noreferrer"
-		>GitHub</a
-	>
+<footer class="container">
+	<nav>
+		<ul>
+			<li>
+				<a href="https://github.com/axel-rock/sveltekit-firebase" target="_blank" rel="noreferrer"
+					>GitHub</a>
+			</li>
+		</ul>
+	</nav>
 </footer>
 
 <style global>
 	@import '../css/app.css';
+
+	#logo {
+		color: var(--h1-color);
+		text-decoration: none;
+		font-size: 1.5rem;
+		font-weight: 400;
+	}
 </style>
