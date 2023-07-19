@@ -12,27 +12,14 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	if (sessionCookie) {
 		try {
-			// let user: DecodedIdToken | UserRecord | null = await auth.verifyIdToken(token ?)
 			let user: DecodedIdToken | UserRecord | null = await auth.verifySessionCookie(sessionCookie)
 			user = user ? await auth.getUser(user.uid) : null
+			// await auth.setCustomUserClaims(user.uid, { admin: true })
 			event.locals.user = user?.toJSON() as UserRecord
-
-			// if (user) {
-			// 	const accessSnapshot = await firestore.collection('access').doc(user.uid).get()
-			// 	let access = accessSnapshot.data()
-			// 	access = { ...access, public: true }
-			// 	event.locals.access = access
-			// }
 		} catch (e) {
 			cookies.set('token', '', { maxAge: -1 })
 		}
 	}
-
-	// if (event.url.pathname.startsWith('/admin') && !event.locals.access?.admin) {
-	// 	return Response.redirect('/', 307)
-	// }
-
-	// event.locals.access = { public: true, ...event.locals.access }
 
 	return resolve(event)
 }
