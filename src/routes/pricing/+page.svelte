@@ -55,30 +55,26 @@
 				</p>
 			{/if}
 
-			<nav>
-				<ul>
-					<li>
-						{#if user}
-							<form method="POST" action="?/checkout">
-								<input type="hidden" name="price" value={product.price.id} />
-								<button type="submit">{product.price.recurring ? 'Subscribe' : 'Buy'}</button>
-							</form>
-						{:else}
-							<button
-								on:click={() => {
-									$signInDialog?.show()
-								}}>Sign in to {product.price.recurring ? 'subscribe' : 'buy'}</button>
-						{/if}
-					</li>
-				</ul>
-			</nav>
+			<div class="flex">
+				{#if user}
+					<form method="POST" action="?/checkout">
+						<input type="hidden" name="price" value={product.price.id} />
+						<button type="submit">{product.price.recurring ? 'Subscribe' : 'Buy'}</button>
+					</form>
+				{:else}
+					<button
+						on:click={() => {
+							$signInDialog?.show()
+						}}>Sign in to {product.price.recurring ? 'subscribe' : 'buy'}</button>
+				{/if}
+			</div>
 		</article>
 	{/each}
 </section>
 
-<pre>
+<!-- <pre>
 	<code>{JSON.stringify(data, null, 2)}</code>
-</pre>
+</pre> -->
 
 <style>
 	.success {
@@ -92,5 +88,10 @@
 			width: 100px;
 			height: 100px;
 		}
+	}
+
+	article form,
+	article button {
+		margin-bottom: 0;
 	}
 </style>

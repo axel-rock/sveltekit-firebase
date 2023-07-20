@@ -2,7 +2,7 @@ import { redirect } from '@sveltejs/kit'
 import { dev } from '$app/environment'
 import { PRIVATE_STRIPE_SECRET_KEY } from '$env/static/private'
 import { PUBLIC_FIREBASE_AUTHDOMAIN } from '$env/static/public'
-import { addCustomClaims, auth, firestore } from '$lib/firebase/admin.server'
+import { addCustomClaims } from '$lib/firebase/admin.server'
 import type { UserRecord } from 'firebase-admin/auth'
 import Stripe from 'stripe'
 

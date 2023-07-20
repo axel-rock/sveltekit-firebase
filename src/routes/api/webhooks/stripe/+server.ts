@@ -29,3 +29,37 @@ export const POST: RequestHandler = async ({ request }) => {
 
 	return new Response()
 }
+
+// switch (event.type) {
+// 	case 'customer.subscription.created':
+// 		const customerSubscriptionCreated = event.data.object;
+// 		// Then define and call a function to handle the event customer.subscription.created
+// 		break;
+// 	case 'customer.subscription.deleted':
+// 		const customerSubscriptionDeleted = event.data.object;
+// 		// Then define and call a function to handle the event customer.subscription.deleted
+// 		break;
+// 	case 'customer.subscription.paused':
+// 		const customerSubscriptionPaused = event.data.object;
+// 		// Then define and call a function to handle the event customer.subscription.paused
+// 		break;
+// 	case 'customer.subscription.resumed':
+// 		const customerSubscriptionResumed = event.data.object;
+// 		// Then define and call a function to handle the event customer.subscription.resumed
+// 		break;
+// 	case 'customer.subscription.updated':
+// 		const customerSubscriptionUpdated = event.data.object;
+// 		// Then define and call a function to handle the event customer.subscription.updated
+// 		break;
+// 	case 'subscription_schedule.completed':
+// 		const subscriptionScheduleCompleted = event.data.object;
+// 		// Then define and call a function to handle the event subscription_schedule.completed
+// 		break;
+// 	case 'subscription_schedule.created':
+// 		const subscriptionScheduleCreated = event.data.object;
+// 		// Then define and call a function to handle the event subscription_schedule.created
+// 		break;
+// 	// ... handle other event types
+// 	default:
+// 		console.log(`Unhandled event type ${event.type}`);
+// }
