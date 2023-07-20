@@ -1,11 +1,22 @@
 <script lang="ts">
 	import type { PageData } from './$types'
-	import SignInDialog from '$lib/components/SignInDialog.svelte'
+	import Dialog from '$lib/components/Dialog.svelte'
+	import SignIn from '$lib/components/SignIn.svelte'
+	import { signInDialog as signInDialogStore } from '$lib/stores'
 	export let data: PageData
 	let { user } = data
 
-	let signInDialog: SignInDialog
+	let signInDialog: Dialog
+
+	$: {
+		if (signInDialog) signInDialogStore.set(signInDialog)
+	}
 </script>
+
+<!-- Default Title -->
+<svelte:head>
+	<title>SvelteKit Firebase</title>
+</svelte:head>
 
 <header class="container">
 	<a href="/" id="logo">SvelteKit Firebase</a>
@@ -14,6 +25,9 @@
 			<li>
 				<a href="/">Home</a>
 			</li>
+			<li>
+				<a href="/pricing">Pricing</a>
+			</li>
 			{#if user}
 				<li>
 					<a href="/user" role="button">{user?.displayName}</a>
@@ -21,7 +35,7 @@
 			{:else}
 				<li>
 					<!-- <a href="/user" role="button">Login</a> -->
-					<button on:click={() => signInDialog.show()}>Login</button>
+					<button on:click={() => signInDialog.show()} role="button">Login</button>
 				</li>
 			{/if}
 		</ul>
@@ -51,7 +65,9 @@
 	</nav>
 </footer>
 
-<SignInDialog bind:this={signInDialog} />
+<Dialog bind:this={signInDialog}>
+	<SignIn />
+</Dialog>
 
 <style global>
 	@import '../css/app.css';

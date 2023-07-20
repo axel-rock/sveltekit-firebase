@@ -85,7 +85,7 @@ export const newRef = async (ref: string) => _doc(collection(db, ref))
 export const signInWithGoogle = async () => {
 	const credentials = await signInWithPopup(auth, new GoogleAuthProvider())
 	const token = await credentials.user?.getIdToken(true)
-	await fetch('/auth', {
+	await fetch('/api/auth', {
 		method: 'POST',
 		body: JSON.stringify({ token })
 	})
@@ -94,7 +94,7 @@ export const signInWithGoogle = async () => {
 
 export const signOut = async () => {
 	await _signOut(auth)
-	await fetch('/auth', {
+	await fetch('/api/auth', {
 		method: 'DELETE'
 	})
 	document.location.reload()

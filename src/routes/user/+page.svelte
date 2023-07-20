@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { PageData } from './$types'
-	import type { User } from 'firebase/auth'
+	import type { UserRecord } from 'firebase-admin/auth'
 	import { signInWithGoogle, signOut } from '$lib/firebase/client'
+	import SignIn from '$lib/components/SignIn.svelte'
 
 	export let data: PageData
-	let user: User = data.user
+	let user: UserRecord = data.user
 </script>
 
 {#if user}
@@ -13,5 +14,5 @@
 
 	<a href="/" on:click={signOut} class="button">Logout</a>
 {:else}
-	<a href="/" on:click={signInWithGoogle} class="button">Sign in with Google</a>
+	<SignIn />
 {/if}

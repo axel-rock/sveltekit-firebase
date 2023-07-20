@@ -34,3 +34,9 @@ gcloud functions add-invoker-policy-binding ssrsveltekitfirebasebp \ # Change th
 ```
 
 ## Initialize Firestore
+
+## Stripe Webhooks
+
+- Install Stripe CLI
+- Run `stripe login`
+- Run `stripe listen --forward-to localhost:5173/api/webhooks/stripe`

@@ -44,3 +44,20 @@ export const getUserFromSessionCookie = async (token: string) => {
 	if (!user) return null
 	return auth.getUser(user.uid)
 }
+
+export const addCustomClaims = async (user: UserRecord, claims: Record<string, unknown>) => {
+	await auth.setCustomUserClaims(user.uid, {
+		...user.customClaims,
+		...claims
+	})
+	await firestore
+		.collection('users')
+		.doc(user.uid)
+		.set(
+			{
+				...user.customClaims,
+				...claims
+			},
+			{ merge: true }
+		)
+}

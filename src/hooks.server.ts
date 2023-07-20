@@ -1,5 +1,6 @@
 import type { Handle } from '@sveltejs/kit'
 import {
+	// addCustomClaims,
 	auth
 	// firestore
 } from '$lib/firebase/admin.server'
@@ -14,7 +15,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		try {
 			let user: DecodedIdToken | UserRecord | null = await auth.verifySessionCookie(sessionCookie)
 			user = user ? await auth.getUser(user.uid) : null
-			// await auth.setCustomUserClaims(user.uid, { admin: true })
+			// await addCustomClaims(user.uid, { admin: true })
 			event.locals.user = user?.toJSON() as UserRecord
 		} catch (e) {
 			cookies.set('token', '', { maxAge: -1 })
