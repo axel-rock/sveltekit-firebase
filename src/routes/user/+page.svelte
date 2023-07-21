@@ -9,10 +9,16 @@
 </script>
 
 {#if user}
-	<h1>{user.displayName}</h1>
-	<p>{user.email}</p>
+	<hgroup>
+		<h1>{user.displayName}</h1>
+		<p>{user.email}</p>
+	</hgroup>
 
-	<a href="/" on:click={signOut} class="button">Logout</a>
+	<div class="flex">
+		<div>
+			<button on:click={signOut} class="contrast">Logout</button>
+		</div>
+	</div>
 {:else}
 	<SignIn />
 {/if}

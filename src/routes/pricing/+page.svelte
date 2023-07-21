@@ -43,12 +43,14 @@
 <section class="grid">
 	{#each products as product}
 		{@const claim = product.metadata?.claim}
-		{@const current = user.customClaims && user.customClaims[claim] === 'active'}
+		{@const userHasOrHadPlan = user?.customClaims && user.customClaims[claim]}
 		<article id={claim}>
 			<hgroup>
 				<h2>
 					{product.name}
-					<small role="button" class="outline secondary">{user.customClaims[claim]}</small>
+					{#if userHasOrHadPlan}
+						<small role="button" class="outline secondary">{user.customClaims[claim]}</small>
+					{/if}
 				</h2>
 
 				<p>
@@ -65,10 +67,14 @@
 
 			<div class="flex">
 				{#if user}
-					<form method="POST" action="?/checkout">
-						<input type="hidden" name="price" value={product.price.id} />
-						<button type="submit">{product.price.recurring ? 'Subscribe' : 'Buy'}</button>
-					</form>
+					{#if userHasOrHadPlan}
+						<a href="/user/billing" role="button" class="contrast">Manage my subscription</a>
+					{:else}
+						<form method="POST" action="?/checkout">
+							<input type="hidden" name="price" value={product.price.id} />
+							<button type="submit">{product.price.recurring ? 'Subscribe' : 'Buy'}</button>
+						</form>
+					{/if}
 				{:else}
 					<div>
 						<button

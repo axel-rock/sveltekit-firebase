@@ -2,7 +2,9 @@ import type { RequestHandler } from './$types'
 import type { Stripe } from 'stripe'
 import { stripe } from '$lib/server/stripe'
 import { PRIVATE_STRIPE_WEBHOOK_SECRET } from '$env/static/private'
-import { addCustomClaims, auth, removeCustomClaim } from '$lib/firebase/admin.server'
+import { addCustomClaims, auth } from '$lib/firebase/admin.server'
+
+type SubscriptionWithPlan = Stripe.Subscription & { plan: Stripe.Plan }
 
 // stripe trigger customer.subscription.created
 
@@ -32,18 +34,18 @@ export const POST: RequestHandler = async ({ request }) => {
 		case 'customer.subscription.created':
 		case 'customer.subscription.updated':
 		case 'customer.subscription.resumed':
-			updateSubscription(event.data.object as Stripe.Subscription)
+			updateSubscription(event.data.object as SubscriptionWithPlan)
 			break
 		case 'customer.subscription.deleted':
 		case 'customer.subscription.paused':
-			updateSubscription(event.data.object as Stripe.Subscription)
+			updateSubscription(event.data.object as SubscriptionWithPlan)
 			break
 	}
 
 	return new Response()
 }
 
-async function updateSubscription(subscription: Stripe.Subscription & { plan: Stripe.Plan }) {
+async function updateSubscription(subscription: SubscriptionWithPlan) {
 	const customer = (await stripe.customers.retrieve(
 		subscription.customer as string
 	)) as Stripe.Customer

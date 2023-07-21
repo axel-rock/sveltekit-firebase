@@ -1,8 +1,10 @@
 <script lang="ts">
 	import type { PageData } from './$types'
+	import { page } from '$app/stores'
 	import Dialog from '$lib/components/Dialog.svelte'
 	import SignIn from '$lib/components/SignIn.svelte'
 	import { signInDialog as signInDialogStore } from '$lib/stores'
+	import { goto } from '$app/navigation'
 	export let data: PageData
 	let { user } = data
 
@@ -66,7 +68,12 @@
 	</nav>
 </footer>
 
-<Dialog bind:this={signInDialog}>
+<Dialog
+	bind:this={signInDialog}
+	open={$page.url.searchParams.get('action') === 'login'}
+	on:close={(e) => {
+		goto($page.url.pathname)
+	}}>
 	<SignIn />
 </Dialog>
 

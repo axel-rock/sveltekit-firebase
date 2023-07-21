@@ -55,3 +55,15 @@ const createCustomer = async (user: UserRecord) => {
 	await addCustomClaims(user, { stripe_customer_id: customer.id })
 	return customer
 }
+
+export const getPortal = async (user: UserRecord) => {
+	if (!user.customClaims?.stripe_customer_id) throw new Error('No Stripe customer ID found.')
+	return await stripe.billingPortal.sessions.create({
+		customer: user.customClaims.stripe_customer_id as string
+	})
+}
+
+export const openPortal = async (user: UserRecord) => {
+	const portal = await getPortal(user)
+	throw redirect(303, portal.url as string)
+}

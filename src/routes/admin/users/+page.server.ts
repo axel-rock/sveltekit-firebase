@@ -1,5 +1,5 @@
-import { addCustomClaims, auth, firestore } from '$lib/firebase/admin.server'
-import { fail } from '@sveltejs/kit'
+import { addCustomClaims, auth, firestore, syncUserAuth } from '$lib/firebase/admin.server'
+import { fail, type Actions } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 import { stripe } from '$lib/server/stripe'
 
@@ -24,5 +24,16 @@ export const actions = {
 		} catch (error) {
 			return fail(400, { success: false, email, error })
 		}
+	},
+
+	resetCustomClaims: async ({ request, locals }) => {
+		const users = await auth.listUsers()
+		await Promise.all(
+			users.users.map(async (user) => {
+				await auth.setCustomUserClaims(user.uid, user.customClaims?.admin ? { admin: true } : {})
+				return syncUserAuth(user)
+			})
+		)
+		return { success: true }
 	}
-}
+} satisfies Actions

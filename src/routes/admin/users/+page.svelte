@@ -43,11 +43,19 @@
 	</tbody>
 </table>
 
-<form method="POST" action="?/addAdmin" use:enhance>
-	<label for="email">Add a new admin</label>
-	<input type="email" name="email" id="email" placeholder="email@admin.com" />
-	<button type="submit">Add</button>
-</form>
+<div class="flex">
+	<form action="?/resetCustomClaims" method="post">
+		<button type="submit">Reset custom claims</button>
+	</form>
+</div>
+
+<div class="flex">
+	<form method="POST" action="?/addAdmin" use:enhance>
+		<label for="email">Add a new admin</label>
+		<input type="email" name="email" id="email" placeholder="email@admin.com" />
+		<button type="submit">Add</button>
+	</form>
+</div>
 
 {#if form?.success}
 	<p>Successfully added as admin</p>

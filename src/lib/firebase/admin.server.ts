@@ -12,6 +12,7 @@ import {
 
 function makeApp() {
 	const apps = getApps()
+
 	if (apps.length > 0) {
 		return apps[0]
 	}
@@ -50,28 +51,10 @@ export const addCustomClaims = async (user: UserRecord, claims: Record<string, u
 		...user.customClaims,
 		...claims
 	})
-	await firestore
-		.collection('users')
-		.doc(user.uid)
-		.set(
-			{
-				customClaims: {
-					...user.customClaims,
-					...claims
-				}
-			},
-			{ merge: true }
-		)
+	await syncUserAuth(user)
 }
 
-// export const removeCustomClaim = async (user: UserRecord, claim: string) => {
-// 	const claims = { ...user.customClaims }
-// 	delete claims[claim]
-// 	await auth.setCustomUserClaims(user.uid, claims)
-// 	await firestore.collection('users').doc(user.uid).set(
-// 		{
-// 			customClaims: claims
-// 		},
-// 		{ merge: true }
-// 	)
-// }
+export const syncUserAuth = async (user: UserRecord | string) => {
+	user = await auth.getUser(typeof user === 'string' ? user : user.uid)
+	await firestore.collection('users').doc(user.uid).set(user.toJSON(), { merge: false })
+}

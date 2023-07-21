@@ -22,5 +22,33 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 	}
 
+	if (event.url.pathname.startsWith('/admin') && !event.locals.user?.customClaims?.admin) {
+		const params = {
+			action: 'login',
+			continueTo: event.url.pathname,
+			message: 'You must be an admin to access this page.'
+		}
+		return new Response('Redirect', {
+			status: 303,
+			headers: {
+				Location: `/?${new URLSearchParams(params).toString()}`
+			}
+		})
+	}
+
+	if (event.url.pathname.startsWith('/user') && !event.locals.user) {
+		const params = {
+			action: 'login',
+			continueTo: event.url.pathname,
+			message: 'You must be logged in to access this page.'
+		}
+		return new Response('Redirect', {
+			status: 303,
+			headers: {
+				Location: `/?${new URLSearchParams(params).toString()}`
+			}
+		})
+	}
+
 	return resolve(event)
 }

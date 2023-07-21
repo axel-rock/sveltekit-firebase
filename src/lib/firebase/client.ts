@@ -20,6 +20,7 @@ import {
 import { initializeApp, getApp, getApps, type FirebaseApp } from 'firebase/app'
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut as _signOut } from 'firebase/auth'
 import { readable } from 'svelte/store'
+import { goto } from '$app/navigation'
 
 export const firebaseConfig = {
 	apiKey: PUBLIC_FIREBASE_APIKEY,
@@ -97,5 +98,6 @@ export const signOut = async () => {
 	await fetch('/api/auth', {
 		method: 'DELETE'
 	})
+	await goto('/')
 	document.location.reload()
 }

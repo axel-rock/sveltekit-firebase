@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte'
+
 	let dialog: HTMLDialogElement
 	export let open = false
+
+	const dispatch = createEventDispatcher()
 
 	export function show() {
 		dialog.showModal()
@@ -9,6 +13,7 @@
 	export function close(e: Event | null) {
 		if (e) e.preventDefault()
 		dialog.close()
+		dispatch('close')
 	}
 
 	function handleClickOutside(e: Event) {
