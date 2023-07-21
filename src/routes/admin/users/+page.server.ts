@@ -1,11 +1,13 @@
 import { addCustomClaims, auth, firestore } from '$lib/firebase/admin.server'
 import { fail } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
+import { stripe } from '$lib/server/stripe'
 
 export const load = (async () => {
 	const refs = await firestore.collection('users').get()
 	const users = refs.docs.map((doc) => doc.data())
-	return { users }
+	const products = await stripe.products.list()
+	return { users, products }
 }) satisfies PageServerLoad
 
 export const actions = {

@@ -40,3 +40,5 @@ gcloud functions add-invoker-policy-binding ssrsveltekitfirebasebp \ # Change th
 - Install Stripe CLI
 - Run `stripe login`
 - Run `stripe listen --forward-to localhost:5173/api/webhooks/stripe`
+
+Add a "claim" metadata to the product on Stripe

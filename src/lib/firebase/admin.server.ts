@@ -55,9 +55,23 @@ export const addCustomClaims = async (user: UserRecord, claims: Record<string, u
 		.doc(user.uid)
 		.set(
 			{
-				...user.customClaims,
-				...claims
+				customClaims: {
+					...user.customClaims,
+					...claims
+				}
 			},
 			{ merge: true }
 		)
 }
+
+// export const removeCustomClaim = async (user: UserRecord, claim: string) => {
+// 	const claims = { ...user.customClaims }
+// 	delete claims[claim]
+// 	await auth.setCustomUserClaims(user.uid, claims)
+// 	await firestore.collection('users').doc(user.uid).set(
+// 		{
+// 			customClaims: claims
+// 		},
+// 		{ merge: true }
+// 	)
+// }

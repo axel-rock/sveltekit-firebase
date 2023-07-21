@@ -23,7 +23,6 @@ export const load = (async ({ url }) => {
 		checkoutSession = await stripe.checkout.sessions.retrieve(
 			url.searchParams.get(checkoutSessionParameter) as string
 		)
-		console.log(checkoutSession)
 	}
 
 	return {

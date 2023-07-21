@@ -42,6 +42,7 @@
 	<li>
 		User management workflow
 		<ul>
+			<li>Set the first admin user somewhere in code</li>
 			<li>Restricted access to ressources</li>
 			<li>Add full email support (create account, retrieve password)</li>
 			<li>Try to find which auth providers are enabled on the project, and add support for them</li>
@@ -75,6 +76,12 @@
 			<li>Stripe integration example</li>
 			<li>Access depending on a paid plan</li>
 			<li>Dev vs Prod Stripe auto switch</li>
+		</ul>
+	</li>
+	<li>
+		Examples: list sites made with this template
+		<ul>
+			<li>Icono</li>
 		</ul>
 	</li>
 </ul>

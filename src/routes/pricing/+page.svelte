@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types'
 	import { signInDialog } from '$lib/stores'
+	import checkmark from '$lib/icons/checkmark.svg?raw'
 
 	export let data: PageData
 
@@ -30,7 +31,8 @@
 
 {#if checkoutSession?.status === 'complete'}
 	<div class="success">
-		<img src="checkmark.gif" alt="" />
+		{@html checkmark}
+
 		<hgroup>
 			<h2>Success</h2>
 			<p>Thank you for your purchase!</p>
@@ -40,9 +42,15 @@
 
 <section class="grid">
 	{#each products as product}
-		<article>
+		{@const claim = product.metadata?.claim}
+		{@const current = user.customClaims && user.customClaims[claim] === 'active'}
+		<article id={claim}>
 			<hgroup>
-				<h2>{product.name}</h2>
+				<h2>
+					{product.name}
+					<small role="button" class="outline secondary">{user.customClaims[claim]}</small>
+				</h2>
+
 				<p>
 					{#if product.description}
 						{product.description}
@@ -62,10 +70,12 @@
 						<button type="submit">{product.price.recurring ? 'Subscribe' : 'Buy'}</button>
 					</form>
 				{:else}
-					<button
-						on:click={() => {
-							$signInDialog?.show()
-						}}>Sign in to {product.price.recurring ? 'subscribe' : 'buy'}</button>
+					<div>
+						<button
+							on:click={() => {
+								$signInDialog?.show()
+							}}>Sign in to {product.price.recurring ? 'subscribe' : 'buy'}</button>
+					</div>
 				{/if}
 			</div>
 		</article>
@@ -84,9 +94,10 @@
 		flex-direction: column;
 		text-align: center;
 
-		& img {
-			width: 100px;
-			height: 100px;
+		& svg {
+			width: 3rem;
+			height: 3rem;
+			fill: var(--form-element-valid-border-color);
 		}
 	}
 

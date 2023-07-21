@@ -18,3 +18,11 @@ header {
 	align-items: center;
 	padding-top: 1.5rem;
 }
+
+small[role='button'] {
+	/* padding: 0.5rem; */
+	font-size: 0.5em;
+	padding: calc(var(--form-element-spacing-vertical) * 0.25)
+		calc(var(--form-element-spacing-horizontal-rounded) * 0.33);
+	vertical-align: middle;
+}

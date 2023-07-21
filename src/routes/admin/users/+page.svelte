@@ -13,6 +13,12 @@
 			<th>Name</th>
 			<th>Email</th>
 			<th>Admin</th>
+			{#each data.products.data as product}
+				{@const claim = product.metadata?.claim}
+				{#if claim}
+					<th>{product.name}</th>
+				{/if}
+			{/each}
 		</tr>
 	</thead>
 	<tbody>
@@ -21,6 +27,17 @@
 				<td>{user.displayName}</td>
 				<td>{user.email}</td>
 				<td>{user.customClaims?.admin ? 'Yes' : 'No'}</td>
+
+				{#each data.products.data as product}
+					{@const claim = product.metadata?.claim}
+					{#if claim}
+						<td class="claim">
+							{#if user.customClaims && user.customClaims[claim]}
+								<span class={user.customClaims[claim]}>{user.customClaims[claim]}</span>
+							{/if}
+						</td>
+					{/if}
+				{/each}
 			</tr>
 		{/each}
 	</tbody>
@@ -37,3 +54,13 @@
 {:else if form?.error}
 	<p>{form.error}</p>
 {/if}
+
+<style>
+	.claim {
+		text-transform: capitalize;
+
+		& .active {
+			color: var(--form-element-valid-border-color);
+		}
+	}
+</style>

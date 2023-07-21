@@ -30,7 +30,7 @@
 			</li>
 			{#if user}
 				<li>
-					<a href="/user" role="button">{user?.displayName}</a>
+					<a href="/user" role="button" class="outline">{user?.displayName}</a>
 				</li>
 			{:else}
 				<li>

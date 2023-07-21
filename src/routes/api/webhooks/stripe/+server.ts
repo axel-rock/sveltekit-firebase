@@ -2,6 +2,7 @@ import type { RequestHandler } from './$types'
 import type { Stripe } from 'stripe'
 import { stripe } from '$lib/server/stripe'
 import { PRIVATE_STRIPE_WEBHOOK_SECRET } from '$env/static/private'
+import { addCustomClaims, auth, removeCustomClaim } from '$lib/firebase/admin.server'
 
 // stripe trigger customer.subscription.created
 
@@ -21,13 +22,42 @@ export const POST: RequestHandler = async ({ request }) => {
 	}
 
 	// customer.subscription.created
-	if (event.type === 'customer.subscription.created') {
-		const subscription = event.data.object as Stripe.Subscription
-		const customer = await stripe.customers.retrieve(subscription.customer as string)
-		console.log(customer)
+	// customer.subscription.deleted
+	// customer.subscription.paused
+	// customer.subscription.resumed
+	// customer.subscription.updated
+
+	// customer.subscription.created
+	switch (event.type) {
+		case 'customer.subscription.created':
+		case 'customer.subscription.updated':
+		case 'customer.subscription.resumed':
+			updateSubscription(event.data.object as Stripe.Subscription)
+			break
+		case 'customer.subscription.deleted':
+		case 'customer.subscription.paused':
+			updateSubscription(event.data.object as Stripe.Subscription)
+			break
 	}
 
 	return new Response()
+}
+
+async function updateSubscription(subscription: Stripe.Subscription & { plan: Stripe.Plan }) {
+	const customer = (await stripe.customers.retrieve(
+		subscription.customer as string
+	)) as Stripe.Customer
+	const user = await auth.getUser(customer.metadata.uid)
+	const product = await stripe.products.retrieve(subscription.plan.product as string)
+	const claim = product.metadata.claim as string
+
+	if (claim) {
+		await addCustomClaims(user, { [claim]: subscription.status })
+	}
+	// if (subscription.status === 'active')
+	// await addCustomClaims(user, { plan: subscription.plan.product as string })
+	// else await removeCustomClaim(user, 'plan')
+	console.log({ subscription, customer, user }, { plan: subscription.plan.product as string })
 }
 
 // switch (event.type) {
