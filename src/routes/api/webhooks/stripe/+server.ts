@@ -1,6 +1,6 @@
 import type { RequestHandler } from './$types'
 import type { Stripe } from 'stripe'
-import { stripe } from '$lib/server/stripe'
+import { stripe } from '$lib/stripe/stripe.server'
 import { PRIVATE_STRIPE_WEBHOOK_SECRET } from '$env/static/private'
 import { addCustomClaims, auth } from '$lib/firebase/admin.server'
 

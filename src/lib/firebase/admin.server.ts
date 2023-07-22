@@ -2,7 +2,7 @@ import { dev } from '$app/environment'
 import { cert, getApps, initializeApp } from 'firebase-admin/app'
 import { getFirestore } from 'firebase-admin/firestore'
 import { getAuth, UserRecord } from 'firebase-admin/auth'
-import { getStorage } from 'firebase-admin/storage'
+// import { getStorage } from 'firebase-admin/storage'
 import { PUBLIC_FIREBASE_PROJECTID, PUBLIC_FIREBASE_STORAGEBUCKET } from '$env/static/public'
 
 import {
@@ -17,7 +17,7 @@ function makeApp() {
 		return apps[0]
 	}
 
-	return initializeApp(
+	const app = initializeApp(
 		dev
 			? {
 					credential: cert({
@@ -32,11 +32,13 @@ function makeApp() {
 			: {},
 		PUBLIC_FIREBASE_PROJECTID
 	)
+	const firestore = getFirestore(app)
+	firestore.settings({ ignoreUndefinedProperties: true })
+	return app
 }
 
 export const firebase = makeApp()
 export const firestore = getFirestore(firebase)
-firestore.settings({ ignoreUndefinedProperties: true })
 export const auth = getAuth(firebase)
 // export const bucket = getStorage(firebase).bucket(PUBLIC_FIREBASE_STORAGEBUCKET)
 

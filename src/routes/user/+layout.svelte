@@ -6,6 +6,11 @@
 	const { user } = data
 </script>
 
+<hgroup>
+	<h1>My Account</h1>
+	<h2>{user.displayName || user.email}</h2>
+</hgroup>
+
 <nav>
 	<ul>
 		<li>

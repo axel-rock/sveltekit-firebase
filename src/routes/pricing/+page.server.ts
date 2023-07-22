@@ -1,4 +1,4 @@
-import { checkout, checkoutSessionParameter, stripe } from '$lib/server/stripe'
+import { checkout, checkoutSessionParameter, stripe } from '$lib/stripe/stripe.server'
 import type { Actions } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
 

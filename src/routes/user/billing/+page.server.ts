@@ -1,4 +1,4 @@
-import { getPortal, stripe } from '$lib/server/stripe'
+import { getPortal, stripe } from '$lib/stripe/stripe.server'
 import type { PageServerLoad } from './$types'
 
 export const load = (async ({ locals }) => {

@@ -1,7 +1,7 @@
 import { addCustomClaims, auth, firestore, syncUserAuth } from '$lib/firebase/admin.server'
 import { fail, type Actions } from '@sveltejs/kit'
 import type { PageServerLoad } from './$types'
-import { stripe } from '$lib/server/stripe'
+import { stripe } from '$lib/stripe/stripe.server'
 
 export const load = (async () => {
 	const refs = await firestore.collection('users').get()
