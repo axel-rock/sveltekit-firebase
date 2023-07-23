@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@picocss/pico':
+    specifier: github:axel-rock/pico-rocks
+    version: github.com/axel-rock/pico-rocks/35efddd197f545725abeef8b914469b5dc150425
   firebase:
     specifier: ^9.23.0
     version: 9.23.0
@@ -3756,3 +3759,9 @@ packages:
   /yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
+
+  github.com/axel-rock/pico-rocks/35efddd197f545725abeef8b914469b5dc150425:
+    resolution: {tarball: https://codeload.github.com/axel-rock/pico-rocks/tar.gz/35efddd197f545725abeef8b914469b5dc150425}
+    name: '@picocss/pico'
+    version: 1.5.10
+    dev: false

@@ -1,0 +1,27 @@
+/**
+* Grid
+* Minimal grid system with auto-layout columns
+*/
+
+.grid {
+	grid-column-gap: var(--grid-spacing-horizontal);
+	grid-row-gap: var(--grid-spacing-vertical);
+	display: grid;
+	grid-template-columns: 1fr;
+	margin: 0;
+
+	& > * {
+		min-width: 0; /* HACK for childs in overflow */
+	}
+}
+
+@media (min-width: 992px) {
+	.grid {
+		grid-template-columns: repeat(auto-fit, minmax(0%, 1fr));
+	}
+}
+
+.flex {
+	display: flex;
+	flex-wrap: wrap;
+}
