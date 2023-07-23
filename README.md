@@ -108,6 +108,12 @@ Here are the known sites that use this template:
 
 - [Icono](https://icono-search.firebaseapp.com/)
 
+# Caveats
+
+## NPM vs Yarn vs PNPM
+
+You may not be able to deploy to firebase if you're using alternative package managers. If you have issues, try using NPM. [Issue](https://github.com/firebase/firebase-tools/issues/5145)
+
 # Roadmap
 
 Here are the features I plan to add:

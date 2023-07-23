@@ -1,13 +1,13 @@
 import { dev } from '$app/environment'
 import { cert, getApps, initializeApp } from 'firebase-admin/app'
+import { getAuth, type UserRecord } from 'firebase-admin/auth'
 import { getFirestore } from 'firebase-admin/firestore'
-import { getAuth, UserRecord } from 'firebase-admin/auth'
 // import { getStorage } from 'firebase-admin/storage'
 import { PUBLIC_FIREBASE_PROJECTID, PUBLIC_FIREBASE_STORAGEBUCKET } from '$env/static/public'
 
 import {
-	PRIVATE_FIREBASE_ADMIN_KEY,
-	PRIVATE_FIREBASE_ADMIN_CLIENT_EMAIL
+	PRIVATE_FIREBASE_ADMIN_CLIENT_EMAIL,
+	PRIVATE_FIREBASE_ADMIN_KEY
 } from '$env/static/private'
 
 function makeApp() {
@@ -29,7 +29,7 @@ function makeApp() {
 					databaseURL: `https://${PUBLIC_FIREBASE_PROJECTID}.firebaseio.com`,
 					storageBucket: PUBLIC_FIREBASE_STORAGEBUCKET
 			  }
-			: {},
+			: undefined,
 		PUBLIC_FIREBASE_PROJECTID
 	)
 	const firestore = getFirestore(app)

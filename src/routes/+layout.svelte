@@ -5,8 +5,11 @@
 	import SignIn from '$lib/components/SignIn.svelte'
 	import { signInDialog as signInDialogStore } from '$lib/stores'
 	import { goto } from '$app/navigation'
+	import { browser } from '$app/environment'
 	export let data: PageData
 	let { user } = data
+
+	const urlAction = browser ? new URL(location.href).searchParams.get('action') : null
 
 	let signInDialog: Dialog
 
@@ -70,7 +73,7 @@
 
 <Dialog
 	bind:this={signInDialog}
-	open={$page.url.searchParams.get('action') === 'login'}
+	open={urlAction === 'login'}
 	on:close={(e) => {
 		goto($page.url.pathname)
 	}}>

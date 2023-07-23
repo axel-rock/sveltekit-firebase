@@ -27,7 +27,7 @@
 	}
 </script>
 
-{#await marked(raw, { renderer, mangle: false }) then html}
+{#await marked(raw, { renderer, mangle: false, headerIds: false }) then html}
 	<div class={showTableOfContents ? 'page-with-sidebar' : ''}>
 		{#if showTableOfContents}
 			<aside>

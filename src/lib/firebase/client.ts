@@ -1,26 +1,27 @@
+import { goto } from '$app/navigation'
 import {
 	PUBLIC_FIREBASE_APIKEY,
-	PUBLIC_FIREBASE_AUTHDOMAIN,
-	PUBLIC_FIREBASE_PROJECTID,
-	PUBLIC_FIREBASE_STORAGEBUCKET,
-	PUBLIC_FIREBASE_MESSAGINGSENDERID,
 	PUBLIC_FIREBASE_APPID
 	// PUBLIC_FIREBASE_MEASUREMENTID
+	,
+	PUBLIC_FIREBASE_AUTHDOMAIN,
+	PUBLIC_FIREBASE_MESSAGINGSENDERID,
+	PUBLIC_FIREBASE_PROJECTID,
+	PUBLIC_FIREBASE_STORAGEBUCKET
 } from '$env/static/public'
+import { getApp, getApps, initializeApp, type FirebaseApp } from 'firebase/app'
+import { GoogleAuthProvider, signOut as _signOut, getAuth, signInWithPopup } from 'firebase/auth'
 import {
-	getFirestore,
-	getDocs,
 	doc as _doc,
 	getDoc as _getDoc,
-	query,
 	collection,
-	QueryConstraint,
-	onSnapshot
+	getDocs,
+	getFirestore,
+	onSnapshot,
+	query,
+	type QueryConstraint
 } from 'firebase/firestore'
-import { initializeApp, getApp, getApps, type FirebaseApp } from 'firebase/app'
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut as _signOut } from 'firebase/auth'
 import { readable } from 'svelte/store'
-import { goto } from '$app/navigation'
 
 export const firebaseConfig = {
 	apiKey: PUBLIC_FIREBASE_APIKEY,
