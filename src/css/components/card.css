@@ -1,0 +1,55 @@
+/**
+ * Card (<article>)
+ */
+
+article {
+	padding: var(--spacing-200) var(--spacing-200);
+	border: solid var(--border-width) var(--grey-300);
+	border-radius: var(--border-radius);
+	background: var(--background);
+
+	&:hover {
+		border-color: var(--grey-400);
+	}
+
+	&.shadow {
+		box-shadow: var(--card-box-shadow);
+	}
+
+	> header,
+	> footer {
+		margin-right: calc(var(--spacing) * -1);
+		margin-left: calc(var(--spacing) * -1);
+		padding: calc(var(--spacing-200) * 0.66) var(--spacing);
+		background-color: var(--grey-100);
+	}
+
+	> header {
+		margin-top: calc(var(--spacing-200) * -1);
+		margin-bottom: var(--spacing-200);
+		border-bottom: var(--border-width) solid var(--grey-300);
+		border-top-right-radius: var(--border-radius);
+		border-top-left-radius: var(--border-radius);
+	}
+
+	> footer {
+		margin-top: var(--spacing-200);
+		margin-bottom: calc(var(--spacing-200) * -1);
+		border-top: var(--border-width) solid var(--grey-300);
+		border-bottom-right-radius: var(--border-radius);
+		border-bottom-left-radius: var(--border-radius);
+	}
+}
+
+.flow article {
+	margin: var(--spacing-200) 0;
+}
+
+a:has(> article) {
+	text-decoration: none;
+	color: inherit;
+
+	&:hover article {
+		border-color: var(--primary);
+	}
+}

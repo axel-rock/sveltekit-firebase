@@ -1,0 +1,61 @@
+:root {
+	/* Derived colors from */
+	/* --text */
+	/* --background */
+	/* --primary */
+	/* --secondary */
+	/* --contrast */
+	--contrast: var(--accent);
+
+	--text-transparent: color-mix(in srgb, var(--text) 50%, transparent);
+	--background-transparent: color-mix(in srgb, var(--background) 50%, transparent);
+
+	--grey-100: color-mix(in srgb, var(--text) 05%, var(--background));
+	--grey-200: color-mix(in srgb, var(--text) 10%, var(--background));
+	--grey-300: color-mix(in srgb, var(--text) 20%, var(--background));
+	--grey-400: color-mix(in srgb, var(--text) 30%, var(--background));
+	--grey-500: color-mix(in srgb, var(--text) 50%, var(--background));
+	--grey-600: color-mix(in srgb, var(--text) 70%, var(--background));
+	--grey-700: color-mix(in srgb, var(--text) 80%, var(--background));
+	--grey-800: color-mix(in srgb, var(--text) 90%, var(--background));
+	--grey-900: color-mix(in srgb, var(--text) 95%, var(--background));
+
+	--primary-100: color-mix(in srgb, var(--primary) 30%, var(--background));
+	--primary-200: color-mix(in srgb, var(--primary) 70%, var(--background));
+	--primary-300: color-mix(in srgb, var(--primary) 80%, var(--background));
+	--primary-400: color-mix(in srgb, var(--primary) 90%, var(--background));
+	--primary-500: var(--primary);
+	--primary-600: color-mix(in srgb, var(--primary) 95%, var(--text));
+	--primary-700: color-mix(in srgb, var(--primary) 90%, var(--text));
+	--primary-800: color-mix(in srgb, var(--primary) 80%, var(--text));
+	--primary-900: color-mix(in srgb, var(--primary) 50%, var(--text));
+
+	--secondary-100: color-mix(in srgb, var(--secondary) 30%, var(--background));
+	--secondary-200: color-mix(in srgb, var(--secondary) 70%, var(--background));
+	--secondary-300: color-mix(in srgb, var(--secondary) 80%, var(--background));
+	--secondary-400: color-mix(in srgb, var(--secondary) 90%, var(--background));
+	--secondary-500: var(--secondary);
+	--secondary-600: color-mix(in srgb, var(--secondary) 95%, var(--text));
+	--secondary-700: color-mix(in srgb, var(--secondary) 90%, var(--text));
+	--secondary-800: color-mix(in srgb, var(--secondary) 80%, var(--text));
+	--secondary-900: color-mix(in srgb, var(--secondary) 50%, var(--text));
+
+	--contrast-100: color-mix(in srgb, var(--contrast) 30%, var(--background));
+	--contrast-200: color-mix(in srgb, var(--contrast) 70%, var(--background));
+	--contrast-300: color-mix(in srgb, var(--contrast) 80%, var(--background));
+	--contrast-400: color-mix(in srgb, var(--contrast) 90%, var(--background));
+	--contrast-500: var(--contrast);
+	--contrast-600: color-mix(in srgb, var(--contrast) 95%, var(--text));
+	--contrast-700: color-mix(in srgb, var(--contrast) 90%, var(--text));
+	--contrast-800: color-mix(in srgb, var(--contrast) 80%, var(--text));
+	--contrast-900: color-mix(in srgb, var(--contrast) 50%, var(--text));
+
+	--amber-50: #fff8e1;
+	--amber-900: #ff6f00;
+
+	--green-600: #43a047;
+	--green-700: #388e3c;
+
+	--red-700: #d32f2f;
+	--red-800: #c62828;
+}

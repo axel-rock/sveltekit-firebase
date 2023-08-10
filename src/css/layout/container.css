@@ -1,0 +1,35 @@
+/**
+* Container
+*/
+
+.container,
+.container-fluid {
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: var(--spacing);
+	padding-left: var(--spacing);
+}
+
+.container {
+	padding-inline: var(--spacing);
+}
+
+@media (min-width: 576px) {
+	.container {
+		padding-inline: var(--spacing-200);
+	}
+}
+
+@media (min-width: 992px) {
+	.container {
+		padding-inline: var(--spacing-400);
+	}
+}
+
+@media (min-width: 1200px) {
+	.container {
+		max-width: 1140px;
+		padding-inline: var(--spacing);
+	}
+}

@@ -1,0 +1,48 @@
+[data-theme='light'],
+:root:not([data-theme='dark']) {
+	--text: #021715;
+	--background: #ffffff;
+	--primary: #f17e87;
+	--secondary: #f8d4ba;
+	--accent: #d01682;
+
+	--primary-inverse: var(--background);
+	--secondary-inverse: var(--text);
+	--contrast-inverse: var(--background);
+
+	--code-background-color: var(--grey-50);
+	--code-color: var(--grey-500);
+	--code-kbd-background-color: var(--contrast);
+	--code-kbd-color: var(--contrast-inverse);
+	--code-tag-color: hsl(330, 40%, 50%);
+	--code-property-color: hsl(185, 40%, 40%);
+	--code-value-color: hsl(40, 20%, 50%);
+	--code-comment-color: var(--grey-300);
+
+	/* --box-shadow-elevation: 1rem;
+	--box-shadow-blur-strengh: 6rem;
+	--box-shadow-opacity: 0.06;
+	--card-background-color: var(--background);
+	--card-border-color: var(--grey-100);
+	--card-box-shadow: calc(var(--box-shadow-elevation) * 0.5 * 0.029)
+			calc(var(--box-shadow-elevation) * 0.029) calc(var(--box-shadow-blur-strengh) * 0.029)
+			rgba(var(--grey-900), calc(var(--box-shadow-opacity) * 0.283)),
+		calc(var(--box-shadow-elevation) * 0.5 * 0.067) calc(var(--box-shadow-elevation) * 0.067)
+			calc(var(--box-shadow-blur-strengh) * 0.067)
+			rgba(var(--grey-900), calc(var(--box-shadow-opacity) * 0.4)),
+		calc(var(--box-shadow-elevation) * 0.5 * 0.125) calc(var(--box-shadow-elevation) * 0.125)
+			calc(var(--box-shadow-blur-strengh) * 0.125)
+			rgba(var(--grey-900), calc(var(--box-shadow-opacity) * 0.5)),
+		calc(var(--box-shadow-elevation) * 0.5 * 0.225) calc(var(--box-shadow-elevation) * 0.225)
+			calc(var(--box-shadow-blur-strengh) * 0.225)
+			rgba(var(--grey-900), calc(var(--box-shadow-opacity) * 0.6)),
+		calc(var(--box-shadow-elevation) * 0.5 * 0.417) calc(var(--box-shadow-elevation) * 0.417)
+			calc(var(--box-shadow-blur-strengh) * 0.417)
+			rgba(var(--grey-900), calc(var(--box-shadow-opacity) * 0.717)),
+		calc(var(--box-shadow-elevation) * 0.5) calc(var(--box-shadow-elevation))
+			calc(var(--box-shadow-blur-strengh)) rgba(var(--grey-900), var(--box-shadow-opacity)),
+		0 0 0 0.0625rem rgba(var(--grey-900), calc(var(--box-shadow-opacity) * 0.25));
+	--card-sectionning-background-color: var(--grey-50); */
+
+	color-scheme: light;
+}

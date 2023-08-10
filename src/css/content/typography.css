@@ -1,0 +1,274 @@
+/**
+* Typography
+*/
+
+/* Add the correct font weight in Chrome, Edge, and Safari */
+b,
+strong {
+	font-weight: bolder;
+}
+
+/* Prevent `sub` and `sup` elements from affecting the line height in all browsers */
+sub,
+sup {
+	position: relative;
+	font-size: 0.75em;
+	line-height: 0;
+	vertical-align: baseline;
+}
+sub {
+	bottom: -0.25em;
+}
+sup {
+	top: -0.5em;
+}
+
+address,
+blockquote,
+dl,
+figure,
+form,
+ol,
+p,
+pre,
+table,
+ul {
+	margin: 0;
+	color: var(--text);
+	font-style: normal;
+	font-weight: var(--font-weight);
+	font-size: var(--font-size);
+}
+
+/* Links */
+a,
+[role='link'] {
+	outline: none;
+	background-color: transparent;
+	color: var(--text);
+	text-decoration: var(--text-decoration);
+
+	transition:
+		background-color var(--transition),
+		color var(--transition),
+		text-decoration var(--transition),
+		box-shadow var(--transition);
+
+	&:is([aria-current], :hover, :active, :focus) {
+		color: var(--primary);
+		--text-decoration: underline;
+	}
+
+	&:focus {
+		background: var(--primary-100);
+	}
+
+	&.secondary {
+		color: var(--secondary);
+
+		&:is([aria-current], :hover, :active, :focus) {
+			color: var(--secondary-700);
+		}
+
+		&:focus {
+			background: var(--secondary-700);
+		}
+	}
+
+	&.contrast {
+		color: var(--contrast);
+
+		&:is([aria-current], :hover, :active, :focus) {
+			color: var(--contrast-700);
+		}
+
+		&:focus {
+			background: var(--contrast-700);
+		}
+	}
+}
+
+[role='document'] :is(a, [role='link']) {
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.2rem;
+
+	&:hover {
+		color: var(--primary);
+	}
+}
+
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	color: var(--text);
+	font-weight: 400;
+	font-family: var(--font-family);
+}
+
+:not(hgroup, [role='document']) > h1 {
+	font-size: 5rem;
+	text-align: center;
+	margin-block: 0.5em;
+}
+h1 {
+	font-size: 2.5rem;
+}
+h2 {
+	font-size: 2.25rem;
+}
+h3 {
+	font-size: 2rem;
+}
+h4 {
+	font-size: 1.75rem;
+}
+h5 {
+	font-size: 1.5rem;
+}
+h6 {
+	font-size: 1.25rem;
+}
+
+/* Margin-top for headings after a typography block */
+/* :where(address, blockquote, dl, figure, form, ol, p, pre, table, ul) {
+	~ :is(h1, h2, h3, h4, h5, h6) {
+		margin-top: var(--typography-spacing-vertical);
+	}
+} */
+
+hgroup,
+.headings {
+	margin-bottom: var(--spacing-200);
+
+	& > * {
+		margin-bottom: 0;
+	}
+
+	/* & > *:last-child {
+		color: var(--grey-500);
+		--font-weight: unset;
+		font-weight: 300;
+		font-size: 1rem;
+		font-family: unset;
+		letter-spacing: unset;
+	} */
+}
+
+/* H2 followed by h1 */
+hgroup :is(h2:has(+ h1), h3:has(+ h2), h4:has(+ h3), h5:has(+ h4), h6:has(+ h5)) {
+	color: var(--grey-500);
+	--font-weight: unset;
+	font-weight: 300;
+	font-size: 1rem;
+	font-family: unset;
+	letter-spacing: unset;
+}
+
+hgroup > *:last-child:not(h2 + h1, h3 + h2, h4 + h3, h5 + h4, h6 + h5) {
+	color: var(--grey-500);
+	--font-weight: unset;
+	font-weight: 300;
+	font-size: 1rem;
+	font-family: unset;
+	letter-spacing: unset;
+}
+
+/* Paragraphs */
+p {
+	margin-bottom: var(--spacing-050);
+}
+
+/* Lists */
+:where(dl, ol, ul) {
+	padding-inline-start: var(--spacing);
+	padding-inline-end: 0;
+
+	li {
+		margin-bottom: calc(var(--spacing-050) * 0.25);
+	}
+}
+
+/* Margin-top for nested lists */
+/* 1. Remove the margin on nested lists in Chrome, Edge, IE, and Safari */
+:where(dl, ol, ul) {
+	:is(dl, ol, ul) {
+		margin: 0;
+		margin-top: calc(var(--spacing-050) * 0.25);
+	}
+}
+
+ul li {
+	list-style: circle;
+}
+
+/* Highlighted text */
+mark {
+	padding: 0.125rem 0.25rem;
+	background-color: var(--amber-50);
+	color: var(--amber-900);
+	vertical-align: baseline;
+}
+
+/* Blockquote */
+blockquote {
+	display: block;
+	margin: var(--spacing-050) 0;
+	padding: var(--spacing);
+	border-right: none;
+	border-left: 0.25rem solid var(--grey-100);
+	border-inline-start: 0.25rem solid var(--grey-100);
+	border-inline-end: none;
+
+	footer {
+		margin-top: var(--spacing-025);
+		color: var(--grey-500);
+	}
+}
+
+/* Abbreviations */
+/* 1. Remove underline decoration in Chrome, Edge, IE, Opera, and Safari */
+abbr[title] {
+	border-bottom: 1px dotted;
+	text-decoration: none;
+	cursor: help;
+}
+
+/* Ins */
+ins {
+	color: var(--green-700);
+	text-decoration: none;
+}
+
+/* del */
+del {
+	color: var(--red-800);
+}
+
+/* selection */
+::selection {
+	background-color: color-mix(in srgb, var(--primary) 25%, transparent);
+}
+
+/* Add a "flow" class to get spacing */
+:where(.flow, [role='document']) :is(address, blockquote, dl, figure, form, ol, p, pre, table, ul) {
+	margin-top: 0;
+	margin-bottom: var(--spacing-050);
+}
+
+:where(.flow, [role='document']) :is(h1, h2, h3, h4, h5, h6) {
+	--spacing: 1em;
+	margin-block-start: 1em;
+	margin-block-end: 0.5em;
+}
+
+.nowrap {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}

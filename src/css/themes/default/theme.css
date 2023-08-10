@@ -1,0 +1,77 @@
+@import 'font.css';
+@import 'colors.css';
+@import 'light.css';
+@import 'dark.css';
+
+:root {
+	/* Spacings */
+	--spacing: 1rem;
+	--spacing-025: calc(var(--spacing) * 0.25);
+	--spacing-033: calc(var(--spacing) / 3);
+	--spacing-050: calc(var(--spacing) * 0.5);
+	--spacing-066: calc(var(--spacing) * 2 / 3);
+	--spacing-075: calc(var(--spacing) * 0.75);
+	--spacing-150: calc(var(--spacing) * 1.5);
+	--spacing-200: calc(var(--spacing) * 2);
+	--spacing-300: calc(var(--spacing) * 3);
+	--spacing-400: calc(var(--spacing) * 4);
+
+	/* Borders */
+	--border-radius: 1.5rem;
+	--border-width: 1px;
+	--outline-width: 3px;
+
+	/* Spacings for typography elements */
+	--typography-spacing-vertical: 0.5rem;
+
+	/* Spacings for body > header, body > main, body > footer, section, article */
+	--block-spacing-vertical: calc(var(--spacing) * 2);
+	--block-spacing-horizontal: var(--spacing);
+
+	/* Spacings for form elements and button */
+	--form-element-spacing-vertical: 0.75rem;
+	--form-element-spacing-horizontal: 0.75rem;
+	--form-element-spacing-horizontal-rounded: 1.5rem;
+
+	/* Spacings for nav component */
+	--nav-element-spacing-vertical: 1rem;
+	--nav-element-spacing-horizontal: 0.5rem;
+	--nav-link-spacing-vertical: 0.5rem;
+	--nav-link-spacing-horizontal: 0.5rem;
+	--nav-link-spacing-horizontal-rounded: 1rem;
+
+	/* Font weight for form labels & fieldsets legend */
+	--form-label-font-weight: var(--font-weight);
+
+	/* Transitions */
+	--transition-duration: 0.2s;
+	--transition-ease: ease-in-out;
+	--transition: var(--transition-duration) var(--transition-ease);
+
+	/* Modal (<dialog>) */
+	--backdrop-filter: blur(0.25rem);
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+a {
+	--text-decoration: none;
+
+	&.secondary,
+	&.contrast {
+		--text-decoration: underline;
+	}
+}
+
+small {
+	font-size: 0.875em;
+}
+
+progress,
+[type='checkbox'],
+[type='radio'],
+[type='range'] {
+	accent-color: var(--primary);
+}

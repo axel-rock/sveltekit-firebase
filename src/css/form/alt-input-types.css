@@ -1,0 +1,239 @@
+/**
+* Form elements
+* Alternatives input types (Not Checkboxes & Radios)
+*/
+
+/* // Color */
+[type='color'] {
+	&::-webkit-color-swatch-wrapper {
+		padding: 0;
+	}
+
+	&::-moz-focus-inner {
+		padding: 0;
+	}
+
+	&::-webkit-color-swatch {
+		border: 0;
+	}
+
+	&::-moz-color-swatch {
+		border: 0;
+	}
+}
+
+/* // Date & Time */
+/* // :not() are needed to add Specificity and avoid !important on padding */
+input:not([type='checkbox'], [type='radio'], [type='range'], [type='file']) {
+	&:is([type='date'], [type='datetime-local'], [type='month'], [type='time'], [type='week']) {
+		--icon-position: 0.75rem;
+		--icon-width: 1rem;
+		padding-right: calc(var(--icon-width) + var(--icon-position));
+		background-image: var(--icon-date);
+		background-position: center right var(--icon-position);
+		background-size: var(--icon-width) auto;
+		background-repeat: no-repeat;
+	}
+
+	/* // Time */
+	&[type='time'] {
+		background-image: var(--icon-time);
+	}
+}
+
+/* // Calendar picker */
+[type='date'],
+[type='datetime-local'],
+[type='month'],
+[type='time'],
+[type='week'] {
+	&::-webkit-calendar-picker-indicator {
+		width: var(--icon-width);
+		margin-right: calc(var(--icon-width) * -1);
+		margin-left: var(--icon-position);
+		opacity: 0;
+	}
+}
+
+[dir='rtl']
+	:is([type='date'], [type='datetime-local'], [type='month'], [type='time'], [type='week']) {
+	text-align: right;
+}
+
+/* // Calendar icons are hidden in Firefox */
+/* @-moz-document url-prefix() {
+	[type="date"],
+	[type="datetime-local"],
+	[type="month"],
+	[type="time"],
+	[type="week"] {
+		padding-right: var(--spacing-075) !important;
+		background-image: none !important;
+	}
+} */
+
+/* // File */
+[type='file'] {
+	--color: var(--grey-500);
+	padding: calc(var(--spacing-075) * 0.5) 0;
+	border: 0;
+	border-radius: 0;
+	background: none;
+
+	&::file-selector-button,
+	&::-webkit-file-upload-button,
+	&::-ms-browse {
+		--background: var(--secondary);
+		--border-color: var(--secondary);
+		--color: var(--secondary-inverse);
+		margin-right: calc(var(--spacing) / 2);
+		margin-left: 0;
+		margin-inline-start: 0;
+		margin-inline-end: calc(var(--spacing) / 2);
+		padding: calc(var(--spacing-075) * 0.5) calc(var(--spacing-075) * 1);
+		border: var(--border-width) solid var(--border-color);
+		border-radius: var(--border-radius);
+		outline: none;
+		background-color: var(--background);
+		box-shadow: var(--box-shadow);
+		color: var(--text);
+		font-weight: var(--font-weight);
+		font-size: 1rem;
+		line-height: var(--line-height);
+		text-align: center;
+		cursor: pointer;
+
+		transition:
+			background-color var(--transition),
+			border-color var(--transition),
+			color var(--transition),
+			box-shadow var(--transition);
+
+		&:is(:hover, :active, :focus) {
+			--background: var(--contrast);
+			--border-color: var(--contrast);
+		}
+	}
+}
+
+/* // Range */
+[type='range'] {
+	/* // Config */
+	--height-track: 0.25rem;
+	--height-thumb: 1.25rem;
+	--border-thumb: 2px;
+
+	/* // Styles */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	width: 100%;
+	height: var(--height-thumb);
+	background: none;
+
+	&::-webkit-slider-runnable-track,
+	&::-moz-range-track,
+	&::-ms-track {
+		width: 100%;
+		height: var(--height-track);
+		border-radius: var(--border-radius);
+		background-color: var(--range-border-color);
+
+		transition:
+			background-color var(--transition),
+			box-shadow var(--transition);
+	}
+
+	/* // Slider Thumb */
+	&::-webkit-slider-thumb,
+	&::-moz-range-thumb,
+	&::-ms-thumb {
+		-webkit-appearance: none;
+		width: var(--height-thumb);
+		height: var(--height-thumb);
+		margin-top: calc(- (var(--height-thumb) * 0.5) + (var(--height-track) * 0.5));
+		border: var(--border-thumb) solid var(--background);
+		border-radius: 50%;
+		background-color: var(--secondary);
+		cursor: pointer;
+
+		transition:
+			background-color var(--transition),
+			transform var(--transition);
+	}
+
+	&:hover,
+	&:focus {
+		--range-border-color: var(--grey-200);
+		--range-thumb-color: var(--contrast);
+	}
+
+	&:active {
+		--range-thumb-color: var(--primary);
+
+		/* // Slider Thumb */
+		&::-webkit-slider-thumb {
+			transform: scale(1.25);
+		}
+
+		&::-moz-range-thumb {
+			transform: scale(1.25);
+		}
+
+		&::-ms-thumb {
+			transform: scale(1.25);
+		}
+	}
+}
+
+/* // Search */
+/* // :not() are needed to add Specificity and avoid !important on padding */
+input:not([type='checkbox'], [type='radio'], [type='range'], [type='file']) {
+	&[type='search'] {
+		padding-inline-start: calc(var(--spacing-075) + 1.75rem);
+		border-radius: 5rem;
+		background-image: var(--icon-search);
+		background-position: center left 1.125rem;
+		background-size: 1rem auto;
+		background-repeat: no-repeat;
+
+		&[aria-invalid] {
+			padding-inline-start: calc(var(--spacing-075) + 1.75rem) !important;
+			background-position:
+				center left 1.125rem,
+				center right 0.75rem;
+		}
+
+		&[aria-invalid='false'] {
+			background-image: var(--icon-search), var(--icon-valid);
+		}
+
+		&[aria-invalid='true'] {
+			background-image: var(--icon-search), var(--icon-invalid);
+		}
+	}
+}
+
+/* // Cancel button */
+[type='search'] {
+	&::-webkit-search-cancel-button {
+		-webkit-appearance: none;
+		display: none;
+	}
+}
+
+[dir='rtl'] {
+	:where(input) {
+		&:not([type='checkbox'], [type='radio'], [type='range'], [type='file']) {
+			&[type='search'] {
+				background-position: center right 1.125rem;
+
+				&[aria-invalid] {
+					background-position:
+						center right 1.125rem,
+						center left 0.75rem;
+				}
+			}
+		}
+	}
+}
