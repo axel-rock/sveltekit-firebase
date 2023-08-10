@@ -67,7 +67,8 @@ The admin page lists the users, and show their subscription status.
 
 ## CSS
 
-This templates uses [Pico Rocks](https://github.com/axel-rock/pico-rocks), a fork of [Pico](https://picocss.com), a lightweight CSS only framework. No install needed.
+<!-- This templates uses [Pico Rocks](https://github.com/axel-rock/pico-rocks), a fork of [Pico](https://picocss.com), a lightweight CSS only framework. No install needed. -->
+This templates uses a CSS-only fork of [Pico](https://picocss.com), a lightweight CSS only framework. No install needed.
 
 I encourage you to check Pico's documentation to see it's capabilities.
 
@@ -98,6 +99,10 @@ A handy component is provided to render markdown files. It's used on the home pa
 
 It can also create a table of content.
 
+## Easy theming
+
+https://realtimecolors.com/ > Just copy paste the generated CSS in the themes files.
+
 # Extras
 
 You can set `minInstances` to 1 in the `firebase.json` file, to avoid cold starts. Estimations varies, but my latest tests showed that it costs around 30€/month, significantly more than what I've seen on other sources.
@@ -107,12 +112,7 @@ You can set `minInstances` to 1 in the `firebase.json` file, to avoid cold start
 Here are the known sites that use this template:
 
 - [Icono](https://icono-search.firebaseapp.com/)
-
-# Caveats
-
-## NPM vs Yarn vs PNPM
-
-You may not be able to deploy to firebase if you're using alternative package managers. If you have issues, try using NPM. [Issue](https://github.com/firebase/firebase-tools/issues/5145)
+- [Bannercafé](https://banner.cafe/)
 
 # Roadmap
 
@@ -128,5 +128,4 @@ Here are the features I plan to add:
 - CSS: App mode (full width, no padding) vs Site mode
 - UI: Animate page transitions (carousel at a site level)
 - Payment: Switch automatically from test to live mode
-- Svelte: Create a component to render markdown, as the home page currently does
 - Legal: Check if the template is compliant with GDPR, and add a cookie banner if needed

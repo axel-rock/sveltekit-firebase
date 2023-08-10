@@ -81,7 +81,7 @@
 </Dialog>
 
 <style global>
-	@import '../css/app.css';
+	@import '../css/style.css';
 
 	#logo {
 		color: var(--h1-color);

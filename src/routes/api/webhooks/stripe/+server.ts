@@ -34,11 +34,11 @@ export const POST: RequestHandler = async ({ request }) => {
 		case 'customer.subscription.created':
 		case 'customer.subscription.updated':
 		case 'customer.subscription.resumed':
-			updateSubscription(event.data.object as SubscriptionWithPlan)
+			await updateSubscription(event.data.object as SubscriptionWithPlan)
 			break
 		case 'customer.subscription.deleted':
 		case 'customer.subscription.paused':
-			updateSubscription(event.data.object as SubscriptionWithPlan)
+			await updateSubscription(event.data.object as SubscriptionWithPlan)
 			break
 	}
 

@@ -40,7 +40,7 @@
 	</div>
 {/if}
 
-<section class="grid">
+<section class="grid flow">
 	{#each products as product}
 		{@const claim = product.metadata?.claim}
 		{@const userHasOrHadPlan = user?.customClaims && user.customClaims[claim]}
